@@ -1,0 +1,219 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@layer base {
+  :root {
+    /* Cream & Peach Theme */
+    --background: 30 50% 97%;
+    --foreground: 30 20% 15%;
+
+    --card: 30 40% 95%;
+    --card-foreground: 30 20% 15%;
+
+    --popover: 30 40% 95%;
+    --popover-foreground: 30 20% 15%;
+
+    --primary: 30 50% 20%;
+    --primary-foreground: 30 50% 97%;
+
+    --secondary: 25 60% 85%;
+    --secondary-foreground: 30 20% 15%;
+
+    --muted: 30 30% 90%;
+    --muted-foreground: 30 15% 45%;
+
+    --accent: 25 70% 78%;
+    --accent-foreground: 30 20% 15%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 30 25% 88%;
+    --input: 30 25% 88%;
+    --ring: 25 60% 78%;
+
+    --radius: 1.25rem;
+
+    /* Custom tokens */
+    --cream: 30 50% 97%;
+    --peach: 25 60% 85%;
+    --peach-dark: 25 55% 75%;
+    --warm-orange: 30 80% 65%;
+    --warm-yellow: 45 80% 70%;
+    
+    /* Glassmorphism - Safari compatible */
+    --glass-bg: 30 50% 97% / 0.7;
+    --glass-border: 30 30% 85% / 0.5;
+    --glass-blur: 20px;
+    
+    /* Shadows - soft depth */
+    --shadow-soft: 0 4px 30px hsl(30 20% 15% / 0.06);
+    --shadow-medium: 0 8px 40px hsl(30 20% 15% / 0.08);
+    --shadow-glow: 0 0 60px hsl(25 60% 85% / 0.3);
+    
+    --sidebar-background: 30 40% 95%;
+    --sidebar-foreground: 30 20% 15%;
+    --sidebar-primary: 30 50% 20%;
+    --sidebar-primary-foreground: 30 50% 97%;
+    --sidebar-accent: 25 60% 85%;
+    --sidebar-accent-foreground: 30 20% 15%;
+    --sidebar-border: 30 25% 88%;
+    --sidebar-ring: 25 60% 78%;
+  }
+
+  .dark {
+    --background: 30 15% 8%;
+    --foreground: 30 30% 92%;
+
+    --card: 30 12% 12%;
+    --card-foreground: 30 30% 92%;
+
+    --popover: 30 12% 12%;
+    --popover-foreground: 30 30% 92%;
+
+    --primary: 30 50% 97%;
+    --primary-foreground: 30 15% 8%;
+
+    --secondary: 25 30% 20%;
+    --secondary-foreground: 30 30% 92%;
+
+    --muted: 30 10% 18%;
+    --muted-foreground: 30 15% 55%;
+
+    --accent: 25 50% 45%;
+    --accent-foreground: 30 30% 92%;
+
+    --border: 30 10% 22%;
+    --input: 30 10% 22%;
+    --ring: 25 50% 45%;
+
+    --glass-bg: 30 12% 12% / 0.8;
+    --glass-border: 30 10% 25% / 0.5;
+    
+    --shadow-soft: 0 4px 30px hsl(0 0% 0% / 0.2);
+    --shadow-medium: 0 8px 40px hsl(0 0% 0% / 0.3);
+    --shadow-glow: 0 0 60px hsl(25 50% 45% / 0.2);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  /* Glassmorphism - Safari optimized */
+  .glass {
+    background: hsl(var(--glass-bg));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid hsl(var(--glass-border));
+  }
+
+  .glass-card {
+    background: hsl(var(--glass-bg));
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow: var(--shadow-soft);
+    border-radius: var(--radius);
+  }
+
+  /* Soft shadows */
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-medium {
+    box-shadow: var(--shadow-medium);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Accent borders - subtle orange/yellow (<3%) */
+  .accent-border {
+    border: 1px solid hsl(var(--warm-orange) / 0.15);
+  }
+
+  .accent-border-yellow {
+    border: 1px solid hsl(var(--warm-yellow) / 0.12);
+  }
+
+  /* Parallax layers */
+  .parallax-slow {
+    will-change: transform;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  .parallax-medium {
+    will-change: transform;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  .parallax-fast {
+    will-change: transform;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  /* Fluid typography */
+  .text-fluid-xs {
+    font-size: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  }
+
+  .text-fluid-sm {
+    font-size: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  }
+
+  .text-fluid-base {
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  }
+
+  .text-fluid-lg {
+    font-size: clamp(1.125rem, 1rem + 0.6vw, 1.25rem);
+  }
+
+  .text-fluid-xl {
+    font-size: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  }
+
+  .text-fluid-2xl {
+    font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+  }
+
+  .text-fluid-3xl {
+    font-size: clamp(1.875rem, 1.4rem + 2.25vw, 3rem);
+  }
+
+  .text-fluid-4xl {
+    font-size: clamp(2.25rem, 1.6rem + 3.25vw, 4rem);
+  }
+}
+
+/* Safari-specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .glass,
+  .glass-card {
+    background: hsl(var(--glass-bg));
+  }
+}
